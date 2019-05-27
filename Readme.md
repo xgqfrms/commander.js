@@ -10,7 +10,13 @@
 
 ## Installation
 
-    $ npm install commander
+```sh
+    $ npm i commander
+    # OR
+    $ npm i -S commander
+    # OR
+    $ yran add commander
+```
 
 ## Declaring _program_ variable
 
@@ -19,6 +25,7 @@ This is used in the examples in this README for brevity.
 
 ```js
 const program = require('commander');
+
 program.version('0.0.1');
 ```
 
@@ -27,6 +34,7 @@ For larger programs which may use commander in multiple ways, including unit tes
  ```js
  const commander = require('commander');
  const program = new commander.Command();
+ 
  program.version('0.0.1');
  ```
 
@@ -51,26 +59,39 @@ program
 
 program.parse(process.argv);
 
-if (program.debug) console.log(program.opts());
+if (program.debug) {
+    console.log(program.opts());
+}
 console.log('pizza details:');
-if (program.small) console.log('- small pizza size');
-if (program.pizzaType) console.log(`- ${program.pizzaType}`);
+
+if (program.small) {
+    console.log('- small pizza size');
+}
+if (program.pizzaType) {
+    console.log(`- ${program.pizzaType}`);
+}
 ```
 
 ```bash
 $ pizza-options -d
 { debug: true, small: undefined, pizzaType: undefined }
+
 pizza details:
+
 $ pizza-options -p
 error: option `-p, --pizza-type <type>' argument missing
+
 $ pizza-options -ds -p vegetarian
 { debug: true, small: true, pizzaType: 'vegetarian' }
+
 pizza details:
 - small pizza size
 - vegetarian
+
 $ pizza-options --pizza-type=cheese
 pizza details:
 - cheese
+
 ```
 
 `program.parse(arguments)` processes the arguments, leaving any args not consumed by the options as the `program.args` array.
@@ -93,6 +114,7 @@ console.log(`cheese: ${program.cheese}`);
 ```bash
 $ pizza-options
 cheese: blue
+
 $ pizza-options --cheese stilton
 cheese: stilton
 ```
@@ -109,17 +131,23 @@ program
   .option('-n, --no-sauce', 'Remove sauce')
   .parse(process.argv);
 
-if (program.sauce) console.log('you ordered a pizza with sauce');
-else console.log('you ordered a pizza without sauce');
+if (program.sauce) {
+    console.log('you ordered a pizza with sauce');
+} else {
+    console.log('you ordered a pizza without sauce');
+}
 ```
 
 ```bash
 $ pizza-options
 you ordered a pizza with sauce
+
 $ pizza-options --sauce
 error: unknown option `--sauce'
+
 $ pizza-options --no-sauce
 you ordered a pizza without sauce
+
 ```
 You can specify an option which functions as a flag but may also take a value (declared using square brackets).
 
@@ -132,18 +160,26 @@ program
 
 program.parse(process.argv);
 
-if (program.cheese === undefined) console.log('no cheese');
-else if (program.cheese === true) console.log('add cheese');
-else console.log(`add cheese type ${program.cheese}`);
+if (program.cheese === undefined) {
+    console.log('no cheese');
+}
+else if (program.cheese === true) {
+    console.log('add cheese');
+} else {
+    console.log(`add cheese type ${program.cheese}`);
+}
 ```
 
 ```bash
 $ pizza-options
 no cheese
+
 $ pizza-options --cheese
 add cheese
+
 $ pizza-options --cheese mozzarella
 add cheese type mozzarella
+
 ```
 
 ### Custom option processing
@@ -195,14 +231,19 @@ if (program.list !== undefined) console.log(program.list);
 ```bash
 $ custom -f 1e2
 float: 100
+
 $ custom --integer 2
 integer: 2
+
 $ custom -v -v -v
 verbose: 3
+
 $ custom -c a -c b -c c
 [ 'a', 'b', 'c' ]
+
 $ custom --list x,y,z
 [ 'x', 'y', 'z' ]
+
 ```
 
 ### Version option
@@ -222,6 +263,7 @@ You may specify custom flags by passing an additional parameter to the `version`
 
 ```js
 program.version('0.0.1', '-v, --version');
+
 ```
 
 
@@ -312,8 +354,10 @@ if (typeof cmdValue === 'undefined') {
    console.error('no command given!');
    process.exit(1);
 }
+
 console.log('command:', cmdValue);
 console.log('environment:', envValue || "no environment given");
+
 ```
 Angled brackets (e.g. `<cmd>`) indicate required input. Square brackets (e.g. `[env]`) indicate optional input.
 
@@ -350,6 +394,7 @@ You can enable `--harmony` option in two ways:
 
 ```  
 $ ./examples/pizza --help
+
 Usage: pizza [options]
 
 An application for pizzas ordering
