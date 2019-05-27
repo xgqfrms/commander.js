@@ -11,11 +11,13 @@
 ## Installation
 
 ```sh
-    $ npm i commander
-    # OR
-    $ npm i -S commander
-    # OR
-    $ yran add commander
+    
+$ npm i commander
+# OR
+$ npm i -S commander
+# OR
+$ yran add commander
+    
 ```
 
 ## Declaring _program_ variable
@@ -27,6 +29,7 @@ This is used in the examples in this README for brevity.
 const program = require('commander');
 
 program.version('0.0.1');
+
 ```
 
 For larger programs which may use commander in multiple ways, including unit testing, it is better to create a local Command object to use.
