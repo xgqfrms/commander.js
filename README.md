@@ -13,7 +13,7 @@
 ```sh
     
 $ npm i commander
-# OR
+
 $ npm i -S commander
 # OR
 $ yarn add commander
