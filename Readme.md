@@ -16,8 +16,7 @@ $ npm i commander
 # OR
 $ npm i -S commander
 # OR
-$ yran add commander
-    
+$ yarn add commander
 ```
 
 ## Declaring _program_ variable
