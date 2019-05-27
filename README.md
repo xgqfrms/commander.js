@@ -13,10 +13,10 @@
 ```sh
     
 $ npm i commander
-
-$ npm i -S commander
 # OR
 $ yarn add commander
+
+$ npm i -S commander
 ```
 
 ## Declaring _program_ variable
